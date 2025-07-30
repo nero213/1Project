@@ -1,11 +1,24 @@
-<script setup></script>
+<script>
+import navbar from './Components/navbar.vue';
+export default{
+  name: 'app',
+  components:{
+    navbar
+  },
+  data(){
+    return{
+      navlinks: [
+        {text: 'Home', href: '#Home'},
+        {text: 'About', href: '#About'},
+        {text: 'Learnmore', href: '#Learnmore'},
+      ]
+    }
+  }
+
+}
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <navbar :links="navlinks" />
+  
 </template>
-
-<style scoped></style>
