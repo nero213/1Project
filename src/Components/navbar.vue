@@ -16,16 +16,15 @@ export default {
 
 <template>
   <nav class="navbar">
-    <mybrandLogo />
+    <mybrand-logo  class="testing" />
     <ul>
       <li v-for="link in links" :key="link.href">
         <a :href="link.href">{{ link.text }} </a>
       </li>
     </ul>
-
     <div class="registration">
-      <button>Log in</button>
       <button>Sing up</button>
+      <button>log in</button>
     </div>
   </nav>
 </template>
@@ -35,8 +34,8 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: rgb(99, 6, 40);
-  padding: 1rem;
+  background-color: rgb(28, 8, 15);
+  padding: 1rem 2rem;
   color: azure;
 }
 
@@ -44,19 +43,19 @@ ul {
   display: flex;
   list-style: none;
   gap: 2rem;
-  margin: auto;
-  padding-bottom: 4px; /* Space for the line */
+  margin: 0;
+  padding: 0;
   transition: color 0.3s ease;
 }
 
 ul a {
-  position: relative;
+  position: relative; /* this is used as a way to set up position conditioning */
   text-decoration: none;
   color: azure;
 }
 
 ul a::before {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -64,10 +63,39 @@ ul a::before {
   height: 0.1rem;
   width: 0rem;
   transition: all 0.2s ease-in-out;
-
 }
 
-ul a:hover::before{
+ul a:hover::before {
   width: 2rem;
+}
+button {
+  all: unset;
+  margin-right: 1rem;
+}
+/* Media query for screen */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    padding: 0.8rem;
+  }
+
+  ul {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .registration {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 0.3rem;
+  }
+  button {
+    margin: 0px;
+  }
 }
 </style>
