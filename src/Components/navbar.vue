@@ -16,7 +16,7 @@ export default {
 
 <template>
   <nav class="navbar">
-    <mybrand-logo  class="testing" />
+    <mybrand-logo  />
     <ul>
       <li v-for="link in links" :key="link.href">
         <a :href="link.href">{{ link.text }} </a>
@@ -30,7 +30,7 @@ export default {
 </template>
 
 <style scoped>
-.navbar {
+.navbar { 
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -83,7 +83,7 @@ button {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.2rem;
     width: 100%;
     margin-top: 0.5rem;
   }
