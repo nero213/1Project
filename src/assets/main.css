@@ -1,5 +1,13 @@
 *{
     box-sizing: border-box;
     margin: 0;
- 
+    font-family: "Lato", sans-serif;
+}
+
+:root {
+  --bg-color: #FFFFFF;
+  --text-color: #1A1A1A;
+  --button-color: #1976D2;
+  --button-hover: #1565C0;
+  --accent-color: #42A5F5;
 }
