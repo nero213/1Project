@@ -115,24 +115,48 @@ ul a:hover::before {
   .registration-desktop {
     display: none;
   }
-
   ul {
-    /* this is just for setting the position */
-    position: fixed; /* what this does is that the ul elements is now push to the viewport */
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 60vw;
-    z-index: 1000;
+    /* setting the postion of the sidenav */
+    position: fixed; /* pin nav to viewport (stays fixed when scrolling) */
+    top: 0; /* align to top of viewport */
+    left: 0; /* align to left of viewport */
+    height: 100vh; /* full viewport height */
+    width: 60vw; /* take 60% of viewport width */
+    z-index: 1000; /* keep on top of other elements */
+    /* --------------------------------------------- */
+    /*postion of the ul */
+    background-color: red; /* background color for nav */
+    flex-direction: column; /* stack items vertically */
+    justify-content: center; /* center items vertically */
+    align-items: center; /* center items horizontally */
 
-    background-color: red;
+    /* this is to hide -100 means it goes to the left */
+    /* the transform for a smooth */
+    transform: translateX(-100%); /* move nav off-screen to the left */
+    transition: transform 0.3s ease-in-out; /* smooth slide-in/out animation */
+  }
+  ul.sidenav-active {
+    transform: translateX(
+      0
+    ); /** this would then push the ul back to the view when active */
+  }
+  .hamburger {
+    display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    /* hidden mobile side navigation menu */
-    transform: translateX(0);
-    transition: transform 0.3s ease-in-out;
+    justify-content: space-around;
+    width: 3vh;
+    height: 2vh;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+  }
+  .hamburger span {
+    width: 2rem;
+    height: 0.2rem;
+    background-color: azure;
+    border-radius: 10px;
   }
 }
 </style>
