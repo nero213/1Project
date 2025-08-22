@@ -33,6 +33,12 @@ export default {
       <span></span>
       <span></span>
     </button>
+
+    <div
+      v-if="IsSideNavOpen"
+      class="sidenav-overlay"
+      @click="toggleSidenav"
+    ></div>
     <ul :class="{ 'sidenav-active': IsSideNavOpen }">
       <li v-for="link in links" :key="link.href">
         <a :href="link.href">{{ link.text }} </a>
@@ -157,6 +163,29 @@ ul a:hover::before {
     height: 0.2rem;
     background-color: azure;
     border-radius: 10px;
+  }
+  .sidenav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    z-index: 999; /* Below the sidenav but above other content */
+  }
+
+  .registration-mobile {
+    display: flex;
+    gap: 1vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+
+  .registration-mobile button {
+    all: unset;
+    padding: 2px 10px;
   }
 }
 </style>
