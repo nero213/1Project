@@ -1,5 +1,6 @@
 <script>
 import mybrandLogo from "./mybrandLogo.vue";
+import testing from "../assets/testing.svg";
 
 export default {
   name: "navbar",
@@ -15,6 +16,7 @@ export default {
   data() {
     return {
       IsSideNavOpen: false,
+      testing,
     };
   },
   methods: {
@@ -28,7 +30,11 @@ export default {
 <template>
   <nav class="navbar">
     <mybrand-logo />
-    <button class="hamburger" @click="toggleSidenav">
+    <button
+      class="hamburger"
+      @click="toggleSidenav"
+      aria-label="Open navigation menu"
+    >
       <span></span>
       <span></span>
       <span></span>
@@ -40,7 +46,9 @@ export default {
       @click="toggleSidenav"
     ></div>
     <ul :class="{ 'sidenav-active': IsSideNavOpen }">
+      <div class="sidenavbrand"><img :src="testing" /> Daniela's Tonkatsu</div>
       <li v-for="link in links" :key="link.href">
+        <img :src="link.src" />
         <a :href="link.href">{{ link.text }} </a>
       </li>
       <li class="registration-mobile">
@@ -61,7 +69,7 @@ export default {
   display: flex; /* this would make the child to be inline */
   justify-content: space-between; /* the children would now be given a space */
   align-items: center;
-  background-color: aqua;
+  background-color: rgba(0, 255, 255, 0.371);
   padding: 3vh;
 }
 ul {
@@ -70,6 +78,16 @@ ul {
   margin: 0;
   padding: 0;
   list-style-type: none; /* this is to remove the bullet points */
+}
+/* This is the design for the image */
+li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* reduce the image height */
+li img {
+  height: 1.5rem;
 }
 ul a {
   text-decoration: none; /* this is to remove the underline in the bullter points */
@@ -96,6 +114,9 @@ ul a:hover::before {
   display: flex;
   gap: 0.5vw;
 }
+.sidenavbrand {
+  display: none;
+}
 .registration-desktop button {
   all: unset;
   border: solid 1px;
@@ -104,7 +125,8 @@ ul a:hover::before {
   transition: all 0.3s ease-in-out;
 }
 .registration-desktop button:hover {
-  transform: scale(1.1);
+  background-color: aquamarine;
+  transform: scale(1.07);
   cursor: pointer;
 }
 /* this is to hide the mobile until it reach a certain size */
@@ -121,6 +143,20 @@ ul a:hover::before {
   .registration-desktop {
     display: none;
   }
+
+  .sidenav-active .sidenavbrand {
+    display: flex;
+    position: absolute; /* this would position it relative to the viewport */
+    top: 0;
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    justify-content: center;
+    align-items: center;
+  }
+  .sidenav-active .sidenavbrand img {
+    height: 5vh;
+  }
+
   ul {
     /* setting the postion of the sidenav */
     position: fixed; /* pin nav to viewport (stays fixed when scrolling) */
@@ -131,7 +167,7 @@ ul a:hover::before {
     z-index: 1000; /* keep on top of other elements */
     /* --------------------------------------------- */
     /*postion of the ul */
-    background-color: red; /* background color for nav */
+    background-color: rgb(0, 255, 255); /* background color for nav */
     flex-direction: column; /* stack items vertically */
     justify-content: center; /* center items vertically */
     align-items: center; /* center items horizontally */
@@ -141,10 +177,37 @@ ul a:hover::before {
     transform: translateX(-100%); /* move nav off-screen to the left */
     transition: transform 0.3s ease-in-out; /* smooth slide-in/out animation */
   }
+
   ul.sidenav-active {
     transform: translateX(
       0
     ); /** this would then push the ul back to the view when active */
+  }
+  .sidenav-active li:not(.registration-mobile) {
+    border: solid;
+    padding: 1vh;
+    width: 90%;
+    border-radius: 1rem;
+    color: transparent;
+    box-shadow: 0px 1px 2px black;
+    transition: all 0.3s ease-in-out;
+  }
+  ul a::before {
+    content: none;
+  }
+
+  .sidenav-active li:hover:not(.registration-mobile) {
+    transform: scale(1.05);
+  }
+  .sidenav-active li {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    text-align: center;
+  }
+  .sidenav-active li img {
+    height: 1rem;
+    align-self: center;
   }
   .hamburger {
     display: flex;
@@ -154,16 +217,17 @@ ul a:hover::before {
     height: 2vh;
     background: transparent;
     border: none;
-    cursor: pointer;
     padding: 0;
     z-index: 1001;
   }
+
   .hamburger span {
     width: 2rem;
     height: 0.2rem;
     background-color: azure;
     border-radius: 10px;
   }
+  /* this is like the background that makes the background color of all dark */
   .sidenav-overlay {
     position: fixed;
     top: 0;
@@ -177,7 +241,7 @@ ul a:hover::before {
   .registration-mobile {
     display: flex;
     gap: 1vh;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     margin-top: 20px;
@@ -185,7 +249,14 @@ ul a:hover::before {
 
   .registration-mobile button {
     all: unset;
-    padding: 2px 10px;
+    padding: 0.5vh 5vw;
+    height: 100%;
+    border-radius: 1rem;
+    box-shadow: 1px 2px 0.5px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease-in-out;
+  }
+  .registration-mobile button:hover {
+    transform: scale(1.1);
   }
 }
 </style>
