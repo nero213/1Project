@@ -5,11 +5,13 @@ import HomeSvg from "./assets/home.svg";
 import AboutSvg from "./assets/about.svg";
 import LearnSvg from "./assets/learn.svg";
 import myherosection from "./Components/myherosection.vue";
+import imageComponent from "./Components/imageComponent.vue";
 export default {
   name: "app",
   components: {
     navbar,
-    myherosection
+    myherosection,
+    imageComponent
   },
   data() {
     return {
@@ -31,6 +33,8 @@ export default {
   <navbar :links="navlinks" />
   <!-- this is for my hero section -->
   <myherosection :href="navlinks[0].href"/>
+
+  <imageComponent />
 </template>
 
 <style></style>

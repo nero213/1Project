@@ -1,7 +1,7 @@
 <template>
   <div class="brand">
     <img :src="Logoimage" alt="my brand logo" />
-    <p>Daniela's tonkatsu </p>
+    <p>Daniela's tonkatsu</p>
   </div>
 </template>
 
@@ -18,17 +18,13 @@ export default {
 </script>
 
 <style scoped>
-.brand{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-   
-
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.brand img{
-    height: 2rem;
-    justify-self: center;
-  
-
+.brand img {
+  height: 2rem;
+  justify-self: center;
 }
 </style>

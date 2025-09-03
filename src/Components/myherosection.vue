@@ -6,19 +6,22 @@ export default {
   name: "herosection",
   data() {
     return {
-      Tonkatsu,
-      testing,
-      logo,
-      Image: [Tonkatsu, testing, logo],
-      CurrentIndex: 0,
+      Tonkatsu, // this is for the image
+      testing, // this for the image
+      logo, // this is for the image
+      Image: [Tonkatsu, testing, logo], // created an array to store the image
+      CurrentIndex: 0, // create a variable to be inserted in the array to get the image index
+      show: false,
     };
   },
   mounted() {
+    // seInterval would apply the image slider a 2000 or 2 seconds
+    // start at 0 and then using a % operator it reset back to zero
+    // creating a loop
     setInterval(() => {
       this.CurrentIndex = (this.CurrentIndex + 1) % this.Image.length;
     }, 2000);
   },
-  
 };
 </script>
 
@@ -62,28 +65,25 @@ export default {
   display: flex;
   height: 70vh; /* make it larger so it’s visible */
   width: 50%;
-
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
 }
 .fade-enter-active,
 .fade-leave-active {
-    transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
-.fade-enter-from
- {
+.fade-enter-from {
   transform: scale(1.1);
   opacity: 0;
 }
-.fade-leave-to{
-    transform: scale(0.5);
-    opacity: 0;
+.fade-leave-to {
+  opacity: 0;
 }
 
 .Imgcontiner img {
   height: 60vh;
   overflow: hidden;
-  border-radius: 100%;
+  border-radius: 15vh;
   transition: all 0.5s ease-in-out; /* smooth fade effect */
 }
 .HeroText {
@@ -113,15 +113,62 @@ export default {
   margin-top: 20px;
   width: 100%;
   gap: 8px;
+
 }
 .testing button {
-  position: relative;
   all: unset;
   border: solid black;
   padding: 0.5rem 2rem;
   border-radius: 20px;
+  transition: all 0.3s ease-in-out;
+}
+.testing button:hover {
+  transform: scale(1.05);
 }
 .testing button:first-child {
   background-color: red;
+}
+/* using media query for the phones  */
+@media (max-width: 1064px) {
+  .Imgcontiner img {
+    display: none; /* this is used to hide the image once reach a certain size */
+  }
+  .container {
+    height: 45vh;
+    display: flex;
+    align-items: flex-start;
+    margin: 10px 20px;
+    
+  }
+  .HeroText {
+    height: 0;
+    display: flex;
+
+    width: 100%;
+  }
+  .HeroText h1 {
+    /* this goes from top,right,bottom,left */
+    margin: 0px 0px 10px 0px;
+    font-size: 2rem;
+    animation-iteration-count: infinite;
+    animation-duration: 1s;
+    animation-name: textspin;
+  }
+  .HeroText p {
+    text-align: center;
+  }
+  .Imgcontiner {
+    width: 0; /* this is to remove the div */
+  }
+  @keyframes textspin {
+    0%,
+    100% {
+      transform: translateY(0); /* start and end at rest */
+    }
+    50% {
+      transform: translateY(-15px); /* float upward */
+    }
+    
+  }
 }
 </style>
